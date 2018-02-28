@@ -42,7 +42,6 @@ let innerCode=function createData(data){
 	        movieObj+="</p>";
 	        movieObj+= "<hr>";
 	    }
-	    movieObj+="<input type='submit' value='click here to add these movies'>";
 	    return movieObj;
 	}
 
@@ -56,7 +55,7 @@ function addToJson(id){
 		let release_date = data.release_date;
 		let rating = data.vote_average;
 		let overview = data.overview;
-		
+		let action='add';
 		//console.log(data.title);
 		
 		/*var xmlhttp = new XMLHttpRequest();
@@ -64,7 +63,7 @@ function addToJson(id){
 		xmlhttp.open('GET',"http://localhost:8082/movieFavourites/Favourites?"+params, true);
 	xmlhttp.send();*/
 		var request = new XMLHttpRequest();
-		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview +"&action=add";
+		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action;
 		request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 		request.send();
 		
@@ -73,7 +72,33 @@ function addToJson(id){
 
 function viewJSON(){
 	var request = new XMLHttpRequest();
+	request.onreadystatechange = function(){
+		if(request.readyState == 4 && request.status==200){
+			var obj=JSON.parse(request.responseText);
+			document.getElementById("output").innerHTML = displayFavourites(obj);
+		}
+	};
 	var params = "&action=view";
 	request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 	request.send();
 }
+
+
+function displayFavourites(data){
+	var len=data.count;
+	var movieObj="";
+	 for(var i=0;i<len;i++){
+	        movieObj+="<p class='nested_para'>";
+	        movieObj+="Title:" + data.movies[i].title + "<br>";
+	        movieObj+= "Release date: " + data.movies[i].release_date + "<br>";
+	        movieObj+= "Rating: " + data.movies[i].rating + "<br>";
+	        if(data.movies[i].overview.length!=0){
+	            movieObj+= "Overview: " + data.movies[i].overview + "<br>";
+	        }
+	        movieObj+="</p>";
+	        movieObj+= "<hr>";
+	    }
+	   
+	    return movieObj;
+}
+
