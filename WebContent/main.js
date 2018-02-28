@@ -56,13 +56,17 @@ function addToJson(id){
 		let rating = data.vote_average;
 		let overview = data.overview;
 		let action='add';
-		//console.log(data.title);
 		
-		/*var xmlhttp = new XMLHttpRequest();
-		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview;
-		xmlhttp.open('GET',"http://localhost:8082/movieFavourites/Favourites?"+params, true);
-	xmlhttp.send();*/
 		var request = new XMLHttpRequest();
+		
+		request.onreadystatechange = function(){
+			if(request.readyState == 4 && request.status==200){
+				var str=(request.responseText);
+				if(str!=null && str.equals("error")){
+					document.getElementById("output").innerHTML = 'you have added 10 movies';
+				}
+			}
+		};
 		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action;
 		request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 		request.send();

@@ -35,6 +35,7 @@ public class AddFavourites extends HttpServlet {
 		System.out.println("here " +action);
 		
 	if(action.equalsIgnoreCase("add")) {
+		
 		String title=request.getParameter("title");
 		String release_date=request.getParameter("release_date");
 		String rating=request.getParameter("rating");
@@ -49,6 +50,12 @@ public class AddFavourites extends HttpServlet {
         try {
         	mainObj = (JSONObject) parser.parse(new FileReader("/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json"));
         	this.count = Integer.parseInt(String.valueOf(mainObj.get("count")));
+        	
+        	if(count==10) {
+        		response.setContentType("application/text");
+    	    	response.getWriter().write("error");
+        	}
+        	
         	movies = (JSONArray) mainObj.get("movies");
         	
 		} catch (JSONException e) {
