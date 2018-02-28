@@ -64,9 +64,16 @@ function addToJson(id){
 		xmlhttp.open('GET',"http://localhost:8082/movieFavourites/Favourites?"+params, true);
 	xmlhttp.send();*/
 		var request = new XMLHttpRequest();
-		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview;
+		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview +"&action=add";
 		request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 		request.send();
 		
 	})
+}
+
+function viewJSON(){
+	var request = new XMLHttpRequest();
+	var params = "&action=view";
+	request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
+	request.send();
 }

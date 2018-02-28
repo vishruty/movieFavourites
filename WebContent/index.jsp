@@ -16,7 +16,7 @@
 	<form action="add_movie" method="get">
 	<input type="text" name="movieName" id="movie_name">
 	<input type="button" name="nt" value="search" onClick="myFunction()">
-	
+	<input type='button' value='View favourites' onclick='viewJSON()'  name='ViewFavourites'>
 	<p id="output"></p>
 	 </form>
 	
