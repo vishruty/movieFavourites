@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AddFavourites extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static int count=0;
+	public static String path="/home/vishruty/Documents/workspace-sts/movieFavourites/src/fav.json";
     public AddFavourites() {
         super();
         // TODO Auto-generated constructor stub
@@ -48,13 +49,8 @@ public class AddFavourites extends HttpServlet {
         
         
         try {
-        	mainObj = (JSONObject) parser.parse(new FileReader("/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json"));
+        	mainObj = (JSONObject) parser.parse(new FileReader(path));
         	this.count = Integer.parseInt(String.valueOf(mainObj.get("count")));
-        	
-        	if(count==10) {
-        		response.setContentType("application/text");
-    	    	response.getWriter().write("error");
-        	}
         	
         	movies = (JSONArray) mainObj.get("movies");
         	
@@ -66,14 +62,19 @@ public class AddFavourites extends HttpServlet {
         
         try {
         	count++;
-        	mainObj.put("count", count);
+        	
         	movie.put("title",title);
 			movie.put("release_date",release_date);
 			movie.put("rating",rating);
 			movie.put("overview",overview);
 			movies.add(movie);
+			if(count>10) {
+				movies.remove(0);
+				count--;
+			}
+			mainObj.put("count", count);
 			mainObj.put("movies", movies);
-			FileWriter jsonFileWriter = new FileWriter("/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json");
+			FileWriter jsonFileWriter = new FileWriter(path);
 			
 			jsonFileWriter.write(mainObj.toString());
 			jsonFileWriter.flush();
@@ -91,7 +92,7 @@ public class AddFavourites extends HttpServlet {
 	if(action.equalsIgnoreCase("view")) {
 		JSONParser parser = new JSONParser();
 		try {
-			FileReader reader = new FileReader("/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json");
+			FileReader reader = new FileReader(path);
 		    JSONObject json = (JSONObject) parser.parse(reader);
 		    JSONArray movies=new JSONArray();
 		    movies=(JSONArray) json.get("movies");
