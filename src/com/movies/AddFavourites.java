@@ -41,7 +41,7 @@ public class AddFavourites extends HttpServlet {
 		String release_date=request.getParameter("release_date");
 		String rating=request.getParameter("rating");
 		String overview=request.getParameter("overview");
-		
+		String poster_path=request.getParameter("poster_path");
         JSONObject mainObj = new JSONObject();
         JSONObject movie = new JSONObject();
         JSONArray movies= new JSONArray();
@@ -67,6 +67,7 @@ public class AddFavourites extends HttpServlet {
 			movie.put("release_date",release_date);
 			movie.put("rating",rating);
 			movie.put("overview",overview);
+			movie.put("poster_path", poster_path);
 			movies.add(movie);
 			if(count>10) {
 				movies.remove(0);

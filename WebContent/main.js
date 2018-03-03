@@ -32,6 +32,7 @@ let innerCode=function createData(data){
 	var movieObj="";
 	 for(var i=0;i<len;i++){
 	        movieObj+="<p class='nested_para'>";
+	        movieObj += '<p class="p-loc">Poster: <img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" width=200 height=300></p>';
 	        movieObj+="Title:" + data.results[i].title + "<br>";
 	        movieObj+= "Release date: " + data.results[i].release_date + "<br>";
 	        movieObj+= "Rating: " + data.results[i].vote_average + "<br>";
@@ -55,6 +56,7 @@ function addToJson(id){
 		let release_date = data.release_date;
 		let rating = data.vote_average;
 		let overview = data.overview;
+		let poster = data.poster_path;
 		let action='add';
 		
 		var request = new XMLHttpRequest();
@@ -67,7 +69,7 @@ function addToJson(id){
 				}
 			}
 		};
-		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action;
+		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action + "&poster_path=" +poster;
 		request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 		request.send();
 		
@@ -92,7 +94,8 @@ function displayFavourites(data){
 	var len=data.count;
 	var movieObj="";
 	 for(var i=0;i<len;i++){
-	        movieObj+="<p class='nested_para'>";
+	        movieObj+="<p class='nested_para'>"; 
+	        movieObj += '<p class="p-loc">Poster: <img src="http://image.tmdb.org/t/p/w500' + data.movies[i].poster_path + '" width=200 height=300></p>';
 	        movieObj+="Title:" + data.movies[i].title + "<br>";
 	        movieObj+= "Release date: " + data.movies[i].release_date + "<br>";
 	        movieObj+= "Rating: " + data.movies[i].rating + "<br>";
