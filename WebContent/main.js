@@ -22,7 +22,7 @@ let runSearch=function(keyword){
 	.then((data)=>{
 		//document.getElementById('output').innerHTML=JSON.stringify(data,null,2);
 		//console.log(data.results.length);
-		document.getElementById('output').innerHTML=innerCode(data);
+		document.getElementById('output').innerHTML=innerCode1(data);
 		
 	})
 }
@@ -44,7 +44,30 @@ let innerCode=function createData(data){
 	        movieObj+= "<hr>";
 	    }
 	    return movieObj;
+}
+
+let innerCode1=function createData1(data){
+	var len=data.results.length;
+	var movieObj=""
+	for(var i=0;i<len;i++){
+		movieObj+='<div class="row" style="background-color:#CD5555;">';
+		movieObj+="<div class='col-md-3'>";
+		movieObj += '<img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" width=100% height=auto></p>';
+		movieObj+="</div>";
+		movieObj+="<div class='col-md-9'>";
+		movieObj+="Title:" + data.results[i].title + "<br>";
+        movieObj+= "Release date: " + data.results[i].release_date + "<br>";
+        movieObj+= "Rating: " + data.results[i].vote_average + "<br>";
+        if(data.results[i].overview.length!=0){
+            movieObj+= "Overview: " + data.results[i].overview + "<br>";
+        }
+        movieObj+="<input type='button' value='Add to favourites' onclick='addToJson(" + data.results[i].id + ")'  name='" + data.results[i].id + "'><br>";
+		movieObj+="</div>";
+		movieObj+="</div>";
+	
 	}
+		return movieObj;
+}
 
 function addToJson(id){
 	

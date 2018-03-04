@@ -33,10 +33,14 @@
     	</div>
     </nav>
     
-	<div class="container">
-		<p id="output" style="margin-top: 9em"></p>
+	<main>
+		<div class="container" id="output" style="margin-top: 9em">
+					<!--  	<p id="output" style="margin-top: 9em"></p>  -->
+			
+        <hr>
+       
 	</div>
-	 
+	</main>
 	
 </body>
 </html>
