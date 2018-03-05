@@ -27,34 +27,17 @@ let runSearch=function(keyword){
 	})
 }
 
-let innerCode=function createData(data){
-	var len=data.results.length;
-	var movieObj="";
-	 for(var i=0;i<len;i++){
-	        movieObj+="<p class='nested_para'>";
-	        movieObj += '<p class="p-loc">Poster: <img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" width=200 height=300></p>';
-	        movieObj+="Title:" + data.results[i].title + "<br>";
-	        movieObj+= "Release date: " + data.results[i].release_date + "<br>";
-	        movieObj+= "Rating: " + data.results[i].vote_average + "<br>";
-	        if(data.results[i].overview.length!=0){
-	            movieObj+= "Overview: " + data.results[i].overview + "<br>";
-	        }
-	        movieObj+="<input type='button' value='Add to favourites' onclick='addToJson(" + data.results[i].id + ")'  name='" + data.results[i].id + "'><br>";
-	        movieObj+="</p>";
-	        movieObj+= "<hr>";
-	    }
-	    return movieObj;
-}
+
 
 let innerCode1=function createData1(data){
 	var len=data.results.length;
 	var movieObj=""
 	for(var i=0;i<len;i++){
-		movieObj+='<div class="row" style="background-color:#CD5555;">';
+		movieObj+='<div class="row" style=" margin-bottom:3em; ">';
 		movieObj+="<div class='col-md-3'>";
-		movieObj += '<img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" width=100% height=auto></p>';
+		movieObj += '<img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" ></p>';
 		movieObj+="</div>";
-		movieObj+="<div class='col-md-9'>";
+		movieObj+="<div class='col-md-9 ' style='margin-top:2em;'>";
 		movieObj+="Title:" + data.results[i].title + "<br>";
         movieObj+= "Release date: " + data.results[i].release_date + "<br>";
         movieObj+= "Rating: " + data.results[i].vote_average + "<br>";
@@ -64,7 +47,6 @@ let innerCode1=function createData1(data){
         movieObj+="<input type='button' value='Add to favourites' onclick='addToJson(" + data.results[i].id + ")'  name='" + data.results[i].id + "'><br>";
 		movieObj+="</div>";
 		movieObj+="</div>";
-	
 	}
 		return movieObj;
 }
