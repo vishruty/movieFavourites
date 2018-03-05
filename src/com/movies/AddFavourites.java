@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AddFavourites extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static int count=0;
-	public static String path="/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json";
+	public static String path="/home/vishruty/Documents/workspace-sts/movieFavourites/src/fav.json";
     public AddFavourites() {
         super();
         // TODO Auto-generated constructor stub

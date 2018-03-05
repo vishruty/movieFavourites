@@ -33,19 +33,19 @@ let innerCode1=function createData1(data){
 	var len=data.results.length;
 	var movieObj=""
 	for(var i=0;i<len;i++){
-		movieObj+='<div class="row" style=" margin-bottom:3em; ">';
-		movieObj+="<div class='col-md-3'>";
+		movieObj+='<div class="row movieDetail" style=" margin-bottom:3em; ">';
+		movieObj+="<div class='col-md-3' style='margin-left:2em; margin-top:2em;'>";
 		movieObj += '<img src="http://image.tmdb.org/t/p/w500' + data.results[i].poster_path + '" ></p>';
 		movieObj+="</div>";
-		movieObj+="<div class='col-md-9 ' style='margin-top:2em;'>";
+		movieObj+="<div class='col-md-8 ' style='margin-top:2em; margin-bottom:2em;'>";
 		movieObj+="Title:" + data.results[i].title + "<br>";
         movieObj+= "Release date: " + data.results[i].release_date + "<br>";
         movieObj+= "Rating: " + data.results[i].vote_average + "<br>";
         if(data.results[i].overview.length!=0){
             movieObj+= "Overview: " + data.results[i].overview + "<br>";
         }
-        movieObj+="<input type='button' value='Add to favourites' onclick='addToJson(" + data.results[i].id + ")'  name='" + data.results[i].id + "'><br>";
-		movieObj+="</div>";
+        movieObj+="<input type='button' class='buttonFormat' value='Add to favourites' style='margin-top:1em;' onclick='addToJson(" + data.results[i].id + ")'  name='" + data.results[i].id + "'><br>";
+        movieObj+="</div>";
 		movieObj+="</div>";
 	}
 		return movieObj;
@@ -98,19 +98,22 @@ function viewJSON(){
 function displayFavourites(data){
 	var len=data.count;
 	var movieObj="";
-	 for(var i=0;i<len;i++){
-	        movieObj+="<p class='nested_para'>"; 
-	        movieObj += '<p class="p-loc">Poster: <img src="http://image.tmdb.org/t/p/w500' + data.movies[i].poster_path + '" width=200 height=300></p>';
-	        movieObj+="Title:" + data.movies[i].title + "<br>";
-	        movieObj+= "Release date: " + data.movies[i].release_date + "<br>";
-	        movieObj+= "Rating: " + data.movies[i].rating + "<br>";
-	        if(data.movies[i].overview.length!=0){
-	            movieObj+= "Overview: " + data.movies[i].overview + "<br>";
-	        }
-	        movieObj+="</p>";
-	        movieObj+= "<hr>";
-	    }
-	   
-	    return movieObj;
+	 for(var i=len-1;i>=0;i--){
+		 movieObj+='<div class="row movieDetail" style=" margin-bottom:3em; ">';
+		 movieObj+="<div class='col-md-3' style='margin-left:2em; margin-top:2em;'>";
+   		 movieObj += '<img src="http://image.tmdb.org/t/p/w500' + data.movies[i].poster_path + '" ></p>';
+   		 movieObj+="</div>";
+   		 movieObj+="<div class='col-md-8 ' style='margin-top:2em; margin-bottom:2em;'>";
+   		 movieObj+="Title:" + data.movies[i].title + "<br>";
+	     movieObj+= "Release date: " + data.movies[i].release_date + "<br>";
+	     movieObj+= "Rating: " + data.movies[i].rating + "<br>";
+	     if(data.movies[i].overview.length!=0){
+	    	 movieObj+= "Overview: " + data.movies[i].overview + "<br>";
+	     }
+	     movieObj+="<input type='button' class='buttonFormat' value='Delete' style='margin-top:1em;' ><br>";
+	     movieObj+="</div>";
+	     movieObj+="</div>";
+	 }
+	 return movieObj;
 }
 
