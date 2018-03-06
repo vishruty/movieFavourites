@@ -44,10 +44,10 @@ body{
 }
 .heading{
 	margin-top: 0.3em;
-	font-size: 8em;
+	font-size: 15vmin;
 }
 .navbar-fixed-top{
-	min-height: 10em;
+	min-height: 20vmin;
 }
 .nav_button{
 	margin-top: 3em;
