@@ -1,9 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
 <html>
 <head>
 	<title>Movie Mania</title>
@@ -13,7 +9,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	 <link href="https://fonts.googleapis.com/css?family=Acme|Coiny" rel="stylesheet">
-	<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link type="text/css" rel="stylesheet" href="style.css" />
 	<script src="main.js"></script>
 </head>
@@ -40,15 +35,13 @@
 					<!--  	<p id="output" style="margin-top: 9em"></p>  -->
 			
         <hr>
-       
-	</div>
+		</div>
 	</main>
 	<footer class="site-footer navbar-fixed-bottom">
-				<div class="container" style="color: rgb(255,255,255);">
-s
-					<p class="colophon" style="background-color: rgb(0,0,0,.8);">Copyright 2018 Movia Mania. All rights reserved</p>
-				</div>
-</footer>
+		<div class="container" style="color: rgb(255,255,255);">
+			<p class="colophon" style="background-color: rgb(0,0,0,.8);">Copyright 2018 Movia Mania. All rights reserved</p>
+		</div>
+	</footer>
 	
 </body>
 </html>

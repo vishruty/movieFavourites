@@ -114,6 +114,30 @@ public class AddFavourites extends HttpServlet {
 		} 
 
 	}
+	
+	
+	if(action.equalsIgnoreCase("delete")) {
+		
+		JSONParser parser = new JSONParser();
+		try {
+			String id=request.getParameter("id");
+			FileReader reader = new FileReader(path);
+		    JSONObject json = (JSONObject) parser.parse(reader);
+		    JSONArray movies=new JSONArray();
+		    movies=(JSONArray) json.get("movies");
+		    int total_count = Integer.parseInt(String.valueOf(json.get("count")));
+		    int k= Integer.parseInt(id);
+		    movies.remove(k);
+		    total_count--;
+		    json.put("count", total_count);
+			json.put("movies", movies);
+	    	
+		} catch (IOException | ParseException e) {
+		   // e.printStackTrace();
+			System.out.println(e);
+		} 
+
+	}
 
 }
 	

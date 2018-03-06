@@ -110,10 +110,29 @@ function displayFavourites(data){
 	     if(data.movies[i].overview.length!=0){
 	    	 movieObj+= "Overview: " + data.movies[i].overview + "<br>";
 	     }
-	     movieObj+="<input type='button' class='buttonFormat' value='Delete' style='margin-top:1em;' ><br>";
+	     movieObj+="<input type='button' class='buttonFormat' value='Delete' style='margin-top:1em; 'onclick='deleteFromJson(' + i + ')' ><br>";
 	     movieObj+="</div>";
 	     movieObj+="</div>";
 	 }
 	 return movieObj;
 }
+
+
+function deleteFromJson(id){
+	
+	var request = new XMLHttpRequest();
+	/*request.onreadystatechange = function(){
+		if(request.readyState == 4 && request.status==200){
+			var str=(request.responseText);
+			if(str!=null && str.equals("error")){
+				document.getElementById("output").innerHTML = 'you have added 10 movies';
+			}
+		}
+	};*/
+	var params = "id=" +id + "&action=delete";
+	request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
+	request.send();
+	
+}
+
 
