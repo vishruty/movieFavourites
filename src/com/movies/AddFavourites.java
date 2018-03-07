@@ -27,14 +27,13 @@ public class AddFavourites extends HttpServlet {
 	public static String path="/home/sapient/Desktop/vishruty/STS-WORKSPACE/movieFavourites/src/fav.json";
     public AddFavourites() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action=request.getParameter("action");
 		System.out.println("here " +action);
-		
+	//add a movie in json	
 	if(action.equalsIgnoreCase("add")) {
 		
 		String title=request.getParameter("title");
@@ -42,6 +41,7 @@ public class AddFavourites extends HttpServlet {
 		String rating=request.getParameter("rating");
 		String overview=request.getParameter("overview");
 		String poster_path=request.getParameter("poster_path");
+		String id=request.getParameter("id");
         JSONObject mainObj = new JSONObject();
         JSONObject movie = new JSONObject();
         JSONArray movies= new JSONArray();
@@ -51,9 +51,15 @@ public class AddFavourites extends HttpServlet {
         try {
         	mainObj = (JSONObject) parser.parse(new FileReader(path));
         	this.count = Integer.parseInt(String.valueOf(mainObj.get("count")));
-        	
+        	//if duplicate then dont add
         	movies = (JSONArray) mainObj.get("movies");
-        	
+        	for(int i=0;i<count;i++) {
+        		JSONObject temp=(JSONObject) movies.get(i);
+        		int val=Integer.parseInt(String.valueOf(temp.get("id")));
+        		if(Integer.parseInt(id)==val) {
+        			return;
+        		}
+        	}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -62,12 +68,13 @@ public class AddFavourites extends HttpServlet {
         
         try {
         	count++;
-        	
         	movie.put("title",title);
 			movie.put("release_date",release_date);
 			movie.put("rating",rating);
 			movie.put("overview",overview);
 			movie.put("poster_path", poster_path);
+			movie.put("id", id);
+			
 			movies.add(movie);
 			if(count>10) {
 				movies.remove(0);
@@ -89,7 +96,7 @@ public class AddFavourites extends HttpServlet {
         }
        
 
-}
+}	//view saved json
 	if(action.equalsIgnoreCase("view")) {
 		JSONParser parser = new JSONParser();
 		try {
@@ -115,7 +122,7 @@ public class AddFavourites extends HttpServlet {
 
 	}
 	
-	
+	//delete a favourite movie
 	if(action.equalsIgnoreCase("delete")) {
 		
 		JSONParser parser = new JSONParser();

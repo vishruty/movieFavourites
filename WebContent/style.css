@@ -1,20 +1,13 @@
 @charset "UTF-8";
 
-
-.nested_para{
-	margin-left : 100px;
-	margin-right : 100px;
-	margin-top : 40px;
-	margin-bottom : 40px;
+.form-control{
+	height: 2vmax;
 }
 .glyphicon-search{
-	font-size: 1.4em;
+	font-size: 1vmax;
 }
 .navbar-btn{
-	margin-left: 3em;
-}
-.navbar-fixed-top{
-	margin-botton: 2em;
+	margin-left: 10vw;
 }
 img {
     max-width: 120vw;
@@ -50,9 +43,12 @@ body{
 	min-height: 20vmin;
 }
 .nav_button{
-	margin-top: 3em;
+	margin-top: 2vmin;;
 }
 .buttonFormat{
 	font-family: 'Coiny', cursive;
 	color: black;
+}
+.colophon{
+	font-size: 2vmin;
 }

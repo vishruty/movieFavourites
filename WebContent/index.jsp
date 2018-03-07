@@ -13,6 +13,7 @@
 	<script src="main.js"></script>
 </head>
 <body>
+<!-- navbar  -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
   		<div class="container-fluid">
     		<div class="navbar-header">
@@ -22,14 +23,14 @@
     			<div class="input-group nav_button">
     				<input type="text" class="form-control" placeholder="Search" name="movieName" id="movie_name">
 			        <div class="input-group-btn">
-			          <button onclick="myFunction()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" ></span></button>
+			          <button onclick="searchFunction()" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" ></span></button>
 			        </div>
     			</div>
     				<button onclick='viewJSON()' type='button' class="btn btn-danger navbar-btn nav_button" name='ViewFavourites'>View Favourites</button>
     		</form>
     	</div>
     </nav>
-    
+    <!-- all inner html added here -->
 	<main>
 		<div class="container-fluid mainDiv" id="output" style="margin-top: 9em">
 					<!--  	<p id="output" style="margin-top: 9em"></p>  -->
@@ -37,8 +38,9 @@
         <hr>
 		</div>
 	</main>
+	<!-- footer -->
 	<footer class="site-footer navbar-fixed-bottom">
-		<div class="container" style="color: rgb(255,255,255);">
+		<div class="container-fluid" style="color: rgb(255,255,255);">
 			<p class="colophon" style="background-color: rgb(0,0,0,.8);">Copyright 2018 Movia Mania. All rights reserved</p>
 		</div>
 	</footer>

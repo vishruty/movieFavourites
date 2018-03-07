@@ -1,7 +1,7 @@
 
 let APIKEY = "1f39dea1e4239caa8c1ae2c4975e9926";
-
-function myFunction(){
+//search button onclick
+function searchFunction(){
 var baseURL="https://api.themoviedb.org/3/";
 let url="".concat(baseURL,'configuration?api_key=',APIKEY);
 fetch(url)
@@ -14,7 +14,7 @@ fetch(url)
 	runSearch(x);
 })
 }
-
+//search mentioned movie
 let runSearch=function(keyword){
 	let url=''.concat('https://api.themoviedb.org/3/','search/movie?api_key=',APIKEY,'&query=',keyword);
 	fetch(url)
@@ -28,7 +28,7 @@ let runSearch=function(keyword){
 }
 
 
-
+//inner html for search
 let innerCode1=function createData1(data){
 	var len=data.results.length;
 	var movieObj=""
@@ -50,7 +50,7 @@ let innerCode1=function createData1(data){
 	}
 		return movieObj;
 }
-
+//add favourite
 function addToJson(id){
 	
 	let url=''.concat('http://api.themoviedb.org/3/movie/',id,'?api_key=',APIKEY);
@@ -63,6 +63,7 @@ function addToJson(id){
 		let overview = data.overview;
 		let poster = data.poster_path;
 		let action='add';
+		let movie_id=id;
 		
 		var request = new XMLHttpRequest();
 		
@@ -74,13 +75,13 @@ function addToJson(id){
 				}
 			}
 		};
-		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action + "&poster_path=" +poster;
+		var params = "title=" +title+ "&release_date=" +release_date+ "&rating=" +rating+ "&overview=" +overview + "&action=" +action + "&poster_path=" +poster + "&id=" +movie_id;
 		request.open("GET", "http://localhost:8082/movieFavourites/Favourites?"+params,true);
 		request.send();
 		
 	})
 }
-
+//view favourite
 function viewJSON(){
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function(){
@@ -94,7 +95,7 @@ function viewJSON(){
 	request.send();
 }
 
-
+//view favourite inner html
 function displayFavourites(data){
 	var len=data.count;
 	var movieObj="";
